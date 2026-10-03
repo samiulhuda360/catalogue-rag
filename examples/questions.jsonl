@@ -14,8 +14,12 @@
 {"id": "s14", "category": "table", "question": "How heavy is the Acme Commercial Safe?", "expect": [["87kg"]], "docs": ["acme-safes"]}
 {"id": "s15", "category": "table", "question": "What load can a set of three HB113 hinges carry?", "expect": [["80kg"]], "docs": ["acme-hinges-bolts"]}
 {"id": "s16", "category": "part_number", "question": "Part number for a 35/45 euro profile double cylinder?", "expect": [["k35/45"]], "docs": ["acme-keying"]}
-{"id": "s17", "category": "unanswerable", "question": "How much does the Acme H200 handle cost?", "expect": [], "docs": []}
-{"id": "s18", "category": "unanswerable", "question": "Is the Acme M52 lock approved for use with Gallagher access control?", "expect": [], "docs": []}
-{"id": "s19", "category": "unanswerable", "question": "Which building code clause covers the C800 fire door closer?", "expect": [], "docs": []}
-{"id": "s20", "category": "unanswerable", "question": "What is the warranty on the Acme Vault Safe?", "expect": [], "docs": []}
-{"id": "s21", "category": "unanswerable", "question": "What battery does the Acme H900 handle use?", "expect": [], "docs": []}
+{"id": "s17", "category": "spec", "question": "Which Acme lever set is designed for accessible doors, and what makes it accessible?", "expect": [["l30"], ["return-to-door", "returntodoor", "closedfist", "19mm"]], "docs": ["acme-lever-handles"]}
+{"id": "s18", "category": "table", "question": "Which Acme lever set suits commercial offices and is fire rated to 120 minutes?", "expect": [["l20"]], "docs": ["acme-lever-handles"]}
+{"id": "s19", "category": "spec", "question": "Does the L40 digital lever set have a mechanical key override?", "expect": [["keyoverride", "mechanicalkey"]], "docs": ["acme-lever-handles"]}
+{"id": "s20", "category": "unanswerable", "question": "How much does the Acme H200 handle cost?", "expect": [], "docs": []}
+{"id": "s21", "category": "unanswerable", "question": "Is the Acme M52 lock approved for use with Gallagher access control?", "expect": [], "docs": []}
+{"id": "s22", "category": "unanswerable", "question": "Which building code clause covers the C800 fire door closer?", "expect": [], "docs": []}
+{"id": "s23", "category": "unanswerable", "question": "What is the warranty on the Acme Vault Safe?", "expect": [], "docs": []}
+{"id": "s24", "category": "unanswerable", "question": "What battery does the Acme H900 handle use?", "expect": [], "docs": []}
+{"id": "s25", "category": "unanswerable", "question": "Is the L30 lever set certified to AS 1428.1?", "expect": [], "docs": []}

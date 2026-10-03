@@ -7,14 +7,28 @@
 **An AI product expert for door hardware: ask your catalogues a question and get an answer with the exact page
 it came from, or an honest "not in the catalogues".**
 
-Built for the people who answer hardware questions all day (sales, trade counters, installers, specifiers):
-which battery, which part number, which closer size, does it fit a 44 mm door. Measured on 54 public door
-hardware catalogues (3,062 passages): **98% correct answers, 100% of unanswerable questions declined, about
-2 seconds per answer.** It can also run on a company's own GPU servers as a private knowledge base.
+Built for the people who answer door hardware questions all day: sales, trade counters, installers,
+specifiers, customer service. It answers from what the catalogues state, cites the page, and declines when they
+don't say. Measured on 54 public door hardware catalogues (3,062 passages): **98% correct answers, 100% of
+unanswerable questions declined, about 2 seconds per answer.** It can also run on a company's own GPU servers
+as a private knowledge base.
+
+| Kind of question | Examples |
+|---|---|
+| **Commercial or residential** | Which mortice lock suits a commercial entrance door, and which a residential front door? Which lever set is heavy duty for a school? |
+| **Mechanical or digital** | Does the digital lever set have a mechanical key override? Which keypad works offline? What credentials does the card reader accept? |
+| **Fire-rated doors** | Which lever sets and closers are fire rated, and for how many minutes? Which exit devices are fire rated for a 1100mm door? |
+| **Accessibility** | Which lever set is designed for accessible doors, and what makes it accessible? Which closer power size keeps a light door easy to open? |
+| **Sizing and selection** | Which closer power size suits a 1100mm, 80kg door? Which backsets does the M52 come in? Which friction stay for a 750mm sash? |
+| **Part numbers and finishes** | Part number for the commercial lever set in Matt Black? The 10mm x 1200mm chain? The 35/45 euro cylinder? |
+| **What it declines** | Prices, third-party approvals, building-code or standards compliance (e.g. "certified to AS 1428.1?") unless a catalogue states it |
+
+It reports what the documents say; it does not certify compliance. Fire and accessibility answers cite the
+catalogue page so a specifier can check the rating, conditions and fitting requirements.
 
 ![Demo: a question is answered with a citation while the retrieved passages light up on the map, then a question the catalogues can't answer is declined](docs/screenshots/demo.gif)
 
-All catalogue knowledge comes from public sources ([details](#data)). The demo and screenshots use ten
+All catalogue knowledge comes from public sources ([details](#data)). The demo and screenshots use eleven
 fictional "Acme" catalogues that ship with the repository.
 
 ## Results
@@ -55,7 +69,7 @@ flowchart LR
 | Step | What does the work | Why |
 |---|---|---|
 | Read the PDFs | **AI document parser** (LlamaParse) turns each page, including its specification tables, into Markdown | Catalogues are mostly tables; plain PDF text extraction scrambles them |
-| Understand meaning | **Embedding model** (all-MiniLM-L6-v2, runs locally) turns every passage and question into a vector | Finds "how long does the battery last" in a row labelled `Battery life` |
+| Understand meaning | **Embedding model** (all-MiniLM-L6-v2, runs locally) turns every passage and question into a vector | Finds "lever for wheelchair users" in a page about an *accessible lever set* with no shared words |
 | Match exact codes | **BM25 keyword search** with a tokenizer that understands part numbers (`C700HOSIL` = model C700, hold-open, silver) | Embedding models blur codes; a part number must match exactly |
 | Combine | **Reciprocal rank fusion**, weighted towards keywords (weight chosen by [measurement](eval/results/weight_sweep.md)) | Each search catches what the other misses |
 | Write the answer | **Large language model** (Qwen3 235B by default; any OpenAI-compatible model, including self-hosted) | Reads the 8 best passages and answers in plain language, citing `[n]` after every claim |
@@ -113,11 +127,11 @@ pip install -e ".[dev,parse]"
 cp .env.example .env      # add OPENROUTER_API_KEY, or LLM_BASE_URL for your own model server
 ```
 
-**Try it on the bundled sample** (ten fictional catalogues; used automatically when `data/` is empty):
+**Try it on the bundled sample** (eleven fictional catalogues; used automatically when `data/` is empty):
 
 ```bash
 python -m catalogue_rag index
-python -m catalogue_rag ask "Which C600 closer power size suits an 1100mm, 80kg door?"
+python -m catalogue_rag ask "Which lever set is designed for accessible doors?"
 python -m catalogue_rag serve                              # web UI on http://127.0.0.1:8000
 ```
 
@@ -130,7 +144,7 @@ python -m catalogue_rag search "H200 right hand satin chrome"   # what retrieval
 ```
 
 **Evaluate:** `python eval/run_eval.py` (or `--retrieval-only`, free and fast). It uses the sample's questions
-(`examples/questions.jsonl`) until you write your own in `eval/questions.jsonl`. On the sample: 21 of 21 correct.
+(`examples/questions.jsonl`) until you write your own in `eval/questions.jsonl`. On the sample: 25 questions, see `eval/results/sample/REPORT.md`.
 
 **Test:** `pytest` (37 tests, no API key or documents needed; runs in CI on every push). Guide from unit tests
 to a by-hand checklist: [`docs/testing.md`](docs/testing.md).
@@ -171,7 +185,7 @@ ui/index.html        single-file web UI (no build step)
 eval/                run_eval.py  sweep_weights.py  results/  baseline/ (the first version, kept for comparison)
 tests/               chunking, BM25, fusion, citations, streaming, API, uploads, config
 docs/                architecture.md  enterprise.md  testing.md  sources.md  screenshots/
-examples/            make_sample.py, parsed/ (ten fictional catalogues), questions.jsonl
+examples/            make_sample.py, parsed/ (eleven fictional catalogues), questions.jsonl
 ```
 
 ## Stack

@@ -76,6 +76,9 @@ The questions below use the bundled fictional sample catalogues (`examples/parse
 | 12 | Tell me about door closers | An overview citing several closers | vague question |
 | 13 | H200 batery lyfe | Still finds the battery life | typos |
 | 14 | M52 vs M55 mortice lock: what's different? | Uses and functions, both cited | comparing two products |
+| 15 | Which lever set is designed for accessible doors, and what makes it accessible? | L30: return-to-door lever, 19mm grip, closed-fist operation | accessibility |
+| 16 | Which lever set suits commercial offices and is fire rated to 120 minutes? | L20 | fire-rated selection |
+| 17 | Is the L30 lever set certified to AS 1428.1? | **Declines** | must not claim standards compliance |
 
 Also try: an empty box (Ask does nothing), a 600-character question (rejected), and the page on a
 phone-width window.

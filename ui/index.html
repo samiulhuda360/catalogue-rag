@@ -295,11 +295,12 @@
     </form>
   </div>
   <div class="examples" id="examples">
-    <button type="button">What battery does the Acme H200 handle use and how long does it last?</button>
-    <button type="button">Part number for the 10mm x 1200mm hardened steel chain?</button>
+    <button type="button">Which lever set is designed for accessible doors?</button>
+    <button type="button">Which lever set suits a commercial office and is fire rated?</button>
+    <button type="button">Which mortice lock suits a residential front door?</button>
     <button type="button">Which C600 closer power size suits a 1100mm, 80kg door?</button>
-    <button type="button">Which backsets does the M52 mortice lock come in?</button>
-    <button type="button" class="trap" title="A question the catalogues can't answer">Is the Acme M52 lock approved by Gallagher?</button>
+    <button type="button">Does the L40 digital lever set have a mechanical key override?</button>
+    <button type="button" class="trap" title="A question the catalogues can't answer">Is the L30 lever set certified to AS 1428.1?</button>
   </div>
 
   </div>
@@ -371,7 +372,7 @@ function inline(s) {
 }
 
 // ---------- hero: typewriter cycling through what it finds ----------
-const PHRASES = ["part numbers", "battery specs", "door thicknesses", "closer power sizes", "the exact page", "what it doesn't know"];
+const PHRASES = ["part numbers", "fire-rated hardware", "accessible lever sets", "commercial vs residential", "digital or mechanical", "closer power sizes", "the exact page", "what it doesn't know"];
 async function typer() {
   const el = $("typer");
   if (reduced) { el.textContent = PHRASES[0]; return; }
@@ -399,7 +400,7 @@ document.querySelectorAll("[data-count]").forEach((el, i) =>
   setTimeout(() => countUp(el, +el.dataset.count, +(el.dataset.dec || 0), el.dataset.suffix || ""), 250 + i * 120));
 
 // ---------- placeholder cycling ----------
-const PLACEHOLDERS = ["Ask about a product, part number or spec…", "e.g. H200 handle satin chrome right hand part number", "e.g. which friction stay for a 750mm sash?", "e.g. how heavy is the Commercial Safe?"];
+const PLACEHOLDERS = ["Ask about a product, part number or spec…", "e.g. which exit device suits a 1100mm fire door?", "e.g. commercial lever set in matt black, part number?", "e.g. which friction stay for a 750mm sash?"];
 let ph = 0;
 setInterval(() => { if (!$("q").value && document.activeElement !== $("q")) $("q").placeholder = PLACEHOLDERS[++ph % PLACEHOLDERS.length]; }, 3800);
 

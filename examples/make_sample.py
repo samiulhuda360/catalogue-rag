@@ -200,10 +200,36 @@ catalogue("acme-keying", "Acme Keying and Cylinders", "Euro profile cylinders an
 ])
 ask("part_number", "Part number for a 35/45 euro profile double cylinder?", [["k35/45"]], "acme-keying")
 
+# ---------------------------------------------------------------- 11. lever handles (fixed data: no random draws,
+# so adding it leaves every other catalogue unchanged)
+levers = [["L10", "Residential lever set", "Homes: interior and entry doors", "Light duty", "No", "No"],
+          ["L20", "Commercial lever set", "Offices, schools, retail", "Heavy duty, 1,000,000 cycles", "Yes, 120 minutes", "No"],
+          ["L30", "Accessible lever set", "Public buildings, healthcare, aged care", "Heavy duty, 1,000,000 cycles", "Yes, 60 minutes", "Yes"],
+          ["L40", "Digital lever set", "Homes and small offices", "Medium duty", "No", "No"]]
+catalogue("acme-lever-handles", "Acme Lever Handles", "Mechanical and digital lever sets for residential and commercial doors.", [
+    "## Lever set range\n\n" + table(levers, ["Model", "Name", "Typical use", "Duty", "Fire rated", "Accessible design"]),
+    "## Acme L10 Residential lever set\n\n" + bullets(["For interior and entry doors in homes", "Passage, privacy and entrance functions",
+                                                       "Not fire rated: for fire doors use the L20 or L30", "Finishes: Satin Chrome, Matt Black"]),
+    "## Acme L20 Commercial lever set\n\n" + bullets(["For offices, schools and retail doors with heavy traffic",
+                                                      "Fire rated to 120 minutes when fitted to an M55 lock case",
+                                                      "Tested to 1,000,000 operating cycles", "Spring-assisted lever that does not droop"]),
+    "## Acme L30 Accessible lever set\n\n" + bullets(["Designed for accessible doors in public buildings, healthcare and aged care",
+                                                      "Return-to-door lever end so clothing and bags do not catch",
+                                                      "19mm round grip, operable with a closed fist", "Operating torque under 1 Nm",
+                                                      "High-contrast Matt Black finish for light-coloured doors",
+                                                      "Fire rated to 60 minutes when fitted to an M55 lock case"]),
+    "## Acme L40 Digital lever set\n\n" + bullets(["Keypad entry with up to 100 user codes", "Mechanical key override for flat batteries",
+                                                   "Auto-relock after 5 seconds", "Mechanical inside lever: always free egress"]),
+])
+ask("spec", "Which Acme lever set is designed for accessible doors, and what makes it accessible?",
+    [["l30"], ["return-to-door", "returntodoor", "closedfist", "19mm"]], "acme-lever-handles")
+ask("table", "Which Acme lever set suits commercial offices and is fire rated to 120 minutes?", [["l20"]], "acme-lever-handles")
+ask("spec", "Does the L40 digital lever set have a mechanical key override?", [["keyoverride", "mechanicalkey"]], "acme-lever-handles")
+
 # ---------------------------------------------------------------- unanswerable: the right answer is to decline
 for q in ["How much does the Acme H200 handle cost?", "Is the Acme M52 lock approved for use with Gallagher access control?",
           "Which building code clause covers the C800 fire door closer?", "What is the warranty on the Acme Vault Safe?",
-          "What battery does the Acme H900 handle use?"]:
+          "What battery does the Acme H900 handle use?", "Is the L30 lever set certified to AS 1428.1?"]:
     ask("unanswerable", q, [], "")
 
 OUT.mkdir(parents=True, exist_ok=True)
