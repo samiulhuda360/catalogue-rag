@@ -55,9 +55,6 @@ Thumbs.db
 data/documents/
 data/parsed_documents/
 
-# Local tooling
-.claude/
-
 # Built search index (rebuild with: python -m catalogue_rag index)
 index/
 eval/results/run.log
