@@ -1,0 +1,8 @@
+# Runtime dependencies (same as pyproject.toml). Easiest: pip install -e ".[dev,parse]"
+chromadb>=0.5
+openai>=1.50
+fastapi>=0.110
+uvicorn>=0.24
+pydantic>=2
+python-dotenv>=1.0
+llama-cloud>=2.0

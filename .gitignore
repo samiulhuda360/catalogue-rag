@@ -1,0 +1,65 @@
+# Virtual environment
+venv/
+env/
+
+# API Keys & secrets
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Data & logs
+chroma_data/
+logs/
+*.log
+data/processed/
+
+# IDE
+.vscode/
+.cursor/
+.idea/
+*.swp
+*.swo
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Source documents (third-party catalogues; not redistributed)
+data/documents/
+data/parsed_documents/
+
+# Local tooling
+.claude/
+
+# Built search index (rebuild with: python -m catalogue_rag index)
+index/
+eval/results/run.log
+logs/
+eval/results/failed_run.json

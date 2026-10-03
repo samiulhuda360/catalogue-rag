@@ -1,0 +1,21 @@
+{"id": "s01", "category": "spec", "question": "What battery does the Acme H200 wireless access handle use, and how long does it last?", "expect": [["LR03"], ["30months", "30month"]], "docs": ["acme-access-control"]}
+{"id": "s02", "category": "spec", "question": "Which door thickness does the H200 handle suit?", "expect": [["35-60mm", "35 to 60mm"]], "docs": ["acme-access-control"]}
+{"id": "s03", "category": "part_number", "question": "Part number for the H200 handle, Satin Chrome right hand?", "expect": [["H200SCRH"]], "docs": ["acme-access-control"]}
+{"id": "s04", "category": "spec", "question": "What IP rating does the Acme H300 outdoor handle have?", "expect": [["ip66"]], "docs": ["acme-access-control"]}
+{"id": "s05", "category": "spec", "question": "What is the operating temperature range of the K60 keypad?", "expect": [["-10°cto50°c", "-10to50°c", "-10°c-50°c"]], "docs": ["acme-access-control"]}
+{"id": "s06", "category": "table", "question": "Which C600 closer power size suits an 1100mm door weighing up to 80kg?", "expect": [["size4", "powersize4", "en4"]], "docs": ["acme-door-closers"]}
+{"id": "s07", "category": "part_number", "question": "Part number for the CC200 concealed closer in Satin Stainless?", "expect": [["CC200SS"]], "docs": ["acme-door-closers"]}
+{"id": "s08", "category": "spec", "question": "Which backsets does the M52 series mortice lock come in?", "expect": [["54mm", "54"], ["70mm", "70"], ["89mm", "89"]], "docs": ["acme-mortice-locks"]}
+{"id": "s09", "category": "table", "question": "Which M55 model has the Entrance function?", "expect": [["M5503"]], "docs": ["acme-mortice-locks"]}
+{"id": "s10", "category": "table", "question": "What is the shackle diameter of the Acme P50 padlock?", "expect": [["10mm"]], "docs": ["acme-padlocks"]}
+{"id": "s11", "category": "part_number", "question": "Part number for the 10mm x 1200mm hardened steel chain?", "expect": [["ch/10/1200"]], "docs": ["acme-padlocks"]}
+{"id": "s12", "category": "table", "question": "Which friction stay suits a 750mm sash height?", "expect": [["ws300"]], "docs": ["acme-window-hardware"]}
+{"id": "s13", "category": "table", "question": "Which bottom roller carries a 120kg sliding door?", "expect": [["sr120"]], "docs": ["acme-sliding-doors"]}
+{"id": "s14", "category": "table", "question": "How heavy is the Acme Commercial Safe?", "expect": [["87kg"]], "docs": ["acme-safes"]}
+{"id": "s15", "category": "table", "question": "What load can a set of three HB113 hinges carry?", "expect": [["80kg"]], "docs": ["acme-hinges-bolts"]}
+{"id": "s16", "category": "part_number", "question": "Part number for a 35/45 euro profile double cylinder?", "expect": [["k35/45"]], "docs": ["acme-keying"]}
+{"id": "s17", "category": "unanswerable", "question": "How much does the Acme H200 handle cost?", "expect": [], "docs": []}
+{"id": "s18", "category": "unanswerable", "question": "Is the Acme M52 lock approved for use with Gallagher access control?", "expect": [], "docs": []}
+{"id": "s19", "category": "unanswerable", "question": "Which building code clause covers the C800 fire door closer?", "expect": [], "docs": []}
+{"id": "s20", "category": "unanswerable", "question": "What is the warranty on the Acme Vault Safe?", "expect": [], "docs": []}
+{"id": "s21", "category": "unanswerable", "question": "What battery does the Acme H900 handle use?", "expect": [], "docs": []}
