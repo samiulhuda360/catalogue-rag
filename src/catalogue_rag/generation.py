@@ -16,6 +16,14 @@ from .retrieval import Hit
 
 NOT_FOUND = "NOT_FOUND"
 
+# Wording of a refusal when the model forgets the NOT_FOUND marker: "The extracts do not mention ...".
+# Only used for replies that cite nothing, so a cited answer that mentions a gap is not a decline.
+DECLINE_WORDING = re.compile(
+    r"\b(?:extracts?|sources?|catalogues?|documents?)\b[^.]{0,80}?\b(?:do(?:es)? not|don't|doesn't|cannot|can't)\s+"
+    r"(?:mention|contain|include|cover|specify|state|say|provide|list|confirm)"
+    r"|\bnot (?:mentioned|covered|stated|specified|listed|included|provided) in the\b"
+    r"|\bno (?:information|mention|details?) (?:about|on|of|regarding)\b", re.I)
+
 SYSTEM_PROMPT = f"""You answer questions about door, window and security hardware using ONLY the numbered
 catalogue extracts provided. You are precise because people order parts from your answers.
 
@@ -128,4 +136,7 @@ def finish(raw: str, n_sources: int, model: str, usage: dict | None = None) -> G
     text = re.sub(r"(?i)^(?:on the first line|then one sentence saying what the extracts do cover)[.:,]?\s*", "", text).strip()
     if declined:
         text = re.sub(r"\s*\[\d+(?:\s*[,;]\s*\d+)*\]", "", text).strip()  # a refusal cites nothing
-    return Generated(text, [] if declined else parse_citations(text, n_sources), declined, model, usage or {})
+    cited = [] if declined else parse_citations(text, n_sources)
+    if not declined and not cited and DECLINE_WORDING.search(text[:400]):
+        declined = True  # an uncited "the extracts do not mention X" is a refusal, marker or not
+    return Generated(text, cited, declined, model, usage or {})

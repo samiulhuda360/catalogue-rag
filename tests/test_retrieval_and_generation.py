@@ -139,3 +139,14 @@ def test_stream_never_shows_the_decline_marker():
     shown = "".join(v for k, v in events if k == "delta")
     assert kinds[0] == "declined" and NOT_FOUND not in shown
     assert events[-1][1].declined and events[-1][1].text == "The extracts cover batteries, not prices."
+
+
+def test_uncited_refusal_without_marker_is_a_decline():
+    from catalogue_rag.generation import finish
+
+    g = finish("The extracts do not mention AS 1428.1 certification for the L30 lever set.", 8, "m")
+    assert g.declined and g.cited == []
+    g = finish("The L30 is fire rated to 60 minutes [2]. The extracts do not mention its warranty.", 8, "m")
+    assert not g.declined and g.cited == [2]  # cited answer with a noted gap stays an answer
+    g = finish("It uses a CR123A battery [1].", 8, "m")
+    assert not g.declined
