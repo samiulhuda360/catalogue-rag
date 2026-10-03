@@ -78,6 +78,9 @@ answers re-scored without regenerating them (`--rescore`).
 
 ## Known limits
 
+How a company would remove these limits (self-hosted GPU models, a reranker, access control, connectors) is in
+[`enterprise.md`](enterprise.md).
+
 - **One remaining miss:** the weight of one safe model. The safe catalogue gives
   each model a tiny chunk with near-identical wording; retrieval surfaces the wrong safes and the
   model correctly says it cannot find the figure. A product-name boost against section headings

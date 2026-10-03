@@ -33,10 +33,11 @@ class Settings:
     parsed_dir: Path = field(default_factory=lambda: Path(_env("CATALOGUE_PARSED_DIR", str(_default_parsed()))))
     index_dir: Path = field(default_factory=lambda: Path(_env("CATALOGUE_INDEX_DIR", str(ROOT / "index"))))
 
-    # Language model (any OpenAI-compatible endpoint; OpenRouter by default)
-    llm_api_key: str = field(default_factory=lambda: _env("OPENROUTER_API_KEY", ""))
-    llm_base_url: str = field(default_factory=lambda: _env("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"))
-    llm_model: str = field(default_factory=lambda: _env("OPENROUTER_MODEL", "qwen/qwen3-235b-a22b-2507"))
+    # Language model: any OpenAI-compatible endpoint. OpenRouter by default; LLM_BASE_URL points it at a
+    # self-hosted server instead (vLLM, TGI, Ollama, LM Studio), which usually needs no key.
+    llm_base_url: str = field(default_factory=lambda: _env("LLM_BASE_URL", _env("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")))
+    llm_api_key: str = field(default_factory=lambda: _env("LLM_API_KEY", _env("OPENROUTER_API_KEY", "")))
+    llm_model: str = field(default_factory=lambda: _env("LLM_MODEL", _env("OPENROUTER_MODEL", "qwen/qwen3-235b-a22b-2507")))
     llm_temperature: float = 0.0
     llm_max_tokens: int = 700
 

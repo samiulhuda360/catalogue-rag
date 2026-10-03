@@ -62,8 +62,9 @@ def parse_citations(text: str, n_sources: int) -> list[int]:
 
 class Generator:
     def __init__(self, api_key: str, base_url: str, model: str, temperature: float = 0.0, max_tokens: int = 700):
-        if not api_key:
-            raise SystemExit("No LLM key: set OPENROUTER_API_KEY in .env (any OpenAI-compatible endpoint works).")
+        if not api_key and "openrouter.ai" in base_url:
+            raise SystemExit("No LLM key: set OPENROUTER_API_KEY in .env, or LLM_BASE_URL to a self-hosted model server.")
+        api_key = api_key or "not-needed"  # self-hosted servers usually ignore the key, but the client requires one
         import openai
 
         self.client = openai.OpenAI(api_key=api_key, base_url=base_url, timeout=60)
