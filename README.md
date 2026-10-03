@@ -53,18 +53,7 @@ The first version usually found the right catalogue but sent the model only its 
 
 ## How AI powers it
 
-```mermaid
-flowchart LR
-  PDF["Catalogue PDFs"] -->|"AI document parser<br/>(tables kept intact)"| MD["Pages as Markdown"]
-  MD --> CH["Page-aware chunks<br/>+ section breadcrumbs"]
-  CH --> EMB["AI embeddings<br/>(meaning)"]
-  CH --> KW["BM25 keyword index<br/>(exact part numbers)"]
-  Q["Question"] --> EMB & KW
-  EMB --> F["Rank fusion<br/>+ whole short pages"]
-  KW --> F
-  F -->|"8 numbered sources"| LLM["Large language model<br/>answers only from sources"]
-  LLM --> A["Answer with [1][2] citations<br/>or 'not in the catalogues'"]
-```
+![How it works: catalogue PDFs are read by an AI document parser, split into page-aware chunks and indexed twice (AI embeddings for meaning, a keyword index for exact part numbers); each question runs a hybrid search over both, rank fusion picks the best passages, and a language model writes an answer citing them, or declines](docs/screenshots/how-it-works.png)
 
 | Step | What does the work | Why |
 |---|---|---|
