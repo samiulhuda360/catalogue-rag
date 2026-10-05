@@ -59,6 +59,7 @@ catalogue page so a specifier can check the rating, conditions and fitting requi
 ## Architecture
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#e6f2ef", "primaryBorderColor": "#2f6f68", "primaryTextColor": "#13302c", "lineColor": "#5f7471", "secondaryColor": "#f3efe6", "tertiaryColor": "#f7f8f6"}}}%%
 flowchart TD
   subgraph ingest["Ingest (catalogue-rag parse, index, add)"]
     PDF["Catalogue PDFs<br/>data/documents"] --> LP["LlamaParse<br/>PDF to Markdown, tables kept"]
@@ -127,6 +128,7 @@ The web UI uses `POST /api/ask/stream`, which sends server-sent events (SSE) so 
 answer is written:
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#e6f2ef", "primaryBorderColor": "#2f6f68", "primaryTextColor": "#13302c", "lineColor": "#5f7471", "secondaryColor": "#f3efe6", "tertiaryColor": "#f7f8f6"}}}%%
 sequenceDiagram
   autonumber
   participant UI as Web UI

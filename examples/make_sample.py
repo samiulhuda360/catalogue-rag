@@ -227,7 +227,7 @@ ask("table", "Which Acme lever set suits commercial offices and is fire rated to
 ask("spec", "Does the L40 digital lever set have a mechanical key override?", [["keyoverride", "mechanicalkey"]], "acme-lever-handles")
 
 # ---------------------------------------------------------------- unanswerable: the right answer is to decline
-for q in ["How much does the Acme H200 handle cost?", "Is the Acme M52 lock approved for use with Gallagher access control?",
+for q in ["How much does the Acme H200 handle cost?", "Is the Acme M52 lock approved for use with Northgate access control?",
           "Which building code clause covers the C800 fire door closer?", "What is the warranty on the Acme Vault Safe?",
           "What battery does the Acme H900 handle use?", "Is the L30 lever set certified to AS 1428.1?"]:
     ask("unanswerable", q, [], "")

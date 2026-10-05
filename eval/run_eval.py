@@ -1,4 +1,4 @@
-"""Evaluate the assistant against hand-checked questions, and compare with the prototype.
+"""Evaluate the assistant against hand-checked questions, and compare with a whole-document baseline.
 
     python eval/run_eval.py                  # retrieval + answers, all systems (~5 min)
     python eval/run_eval.py --retrieval-only # no language model calls, free and fast
@@ -187,7 +187,7 @@ def main() -> None:
 
     systems = {}
     if baseline:
-        systems["prototype (whole documents)"] = lambda q: tuple(map(list, zip(*baseline.retrieve(q), strict=False))) or ([], [])
+        systems["whole-document baseline"] = lambda q: tuple(map(list, zip(*baseline.retrieve(q), strict=False))) or ([], [])
     systems.update({"keyword only (BM25)": new_system("bm25"), "embeddings only": new_system("vector"),
                     "hybrid (final)": new_system("hybrid")})
 
@@ -204,7 +204,7 @@ def main() -> None:
         bot = Assistant(cfg, index=index)
         answerers = {}
         if baseline:
-            answerers["prototype"] = lambda q: (baseline.answer(q, baseline.retrieve(q)), False, None)
+            answerers["whole-document baseline"] = lambda q: (baseline.answer(q, baseline.retrieve(q)), False, None)
 
         def final(q: str):
             ans = bot.ask(q)

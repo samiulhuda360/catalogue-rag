@@ -72,6 +72,7 @@ through an API.
 **Target architecture.**
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#e6f2ef", "primaryBorderColor": "#2f6f68", "primaryTextColor": "#13302c", "lineColor": "#5f7471", "secondaryColor": "#f3efe6", "tertiaryColor": "#f7f8f6"}}}%%
 flowchart TD
   U1["Staff<br/>(intranet, Teams, phone)"] --> GW
   U2["Customers<br/>(website chat)"] --> GW

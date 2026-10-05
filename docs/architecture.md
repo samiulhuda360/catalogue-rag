@@ -6,6 +6,7 @@ How Catalogue RAG is put together and why each part works the way it does. Setup
 ## Components
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#e6f2ef", "primaryBorderColor": "#2f6f68", "primaryTextColor": "#13302c", "lineColor": "#5f7471", "secondaryColor": "#f3efe6", "tertiaryColor": "#f7f8f6"}}}%%
 flowchart TD
   UI["Web UI<br/>ui/index.html"] -->|"HTTP and server-sent events"| API["FastAPI app<br/>api.py"]
   CLI["CLI<br/>__main__.py"] --> PIPE

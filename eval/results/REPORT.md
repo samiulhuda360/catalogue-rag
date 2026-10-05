@@ -6,7 +6,7 @@ Run 2026-10-03T15:23:18 · model `qwen/qwen3-235b-a22b-2507` · 46 questions (40
 
 | System | Expected document retrieved | Answer text reaches the model | Fact MRR |
 |---|---|---|---|
-| prototype (whole documents) | 92% | 30% | 0.24 |
+| whole-document baseline | 92% | 30% | 0.24 |
 | keyword only (BM25) | 100% | 100% | 0.79 |
 | embeddings only | 92% | 82% | 0.63 |
 | hybrid (final) | 100% | 98% | 0.80 |
@@ -15,14 +15,14 @@ Run 2026-10-03T15:23:18 · model `qwen/qwen3-235b-a22b-2507` · 46 questions (40
 
 | System | Correct | Cites the right document | Declines unanswerable | Wrongly declines | p50 / p95 |
 |---|---|---|---|---|---|
-| prototype | 20% | n/a (no per-claim citations) | 83% | 55% | 6.2s / 15.6s |
+| whole-document baseline | 20% | n/a (no per-claim citations) | 83% | 55% | 6.2s / 15.6s |
 | final | 98% | 98% | 100% | 2% | 2.3s / 3.0s |
 
 ### Correct answers by question type
 
 | System | part_number | spec | table |
 |---|---|---|---|
-| prototype | 7% | 29% | 0% |
+| whole-document baseline | 7% | 29% | 0% |
 | final | 100% | 96% | 100% |
 
 ### Questions not answered correctly
