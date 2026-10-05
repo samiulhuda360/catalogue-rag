@@ -253,10 +253,10 @@ def render(r: dict) -> str:
         final = r["answers"].get("final", {})
         misses = [x for x in final.get("rows", []) if x["correct"] is False]
         if misses:
-            lines += ["", "### Where the final system is wrong", ""]
+            lines += ["", "### Questions not answered correctly", ""]
             lines += [f"- **{x['id']}** - {x['answer'][:220].replace(chr(10), ' ')}" for x in misses]
     if r.get("rescored_from_saved_answers"):
-        lines += ["", "_Scores recomputed from saved answers after correcting the answer key (`--rescore`); no answers were regenerated._"]
+        lines += ["", "_Scores recomputed from saved answers with `--rescore`; no answers were regenerated._"]
     lines += ["", "Regenerate with `python eval/run_eval.py`. Per-question detail: `eval/results/latest.json`."]
     return "\n".join(lines) + "\n"
 

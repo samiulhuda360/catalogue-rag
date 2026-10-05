@@ -41,4 +41,4 @@ target-version = "py311"
 select = ["E", "F", "W", "I", "B"]
 
 [tool.ruff.lint.per-file-ignores]
-"eval/baseline/*" = ["B", "E", "F", "W", "I"]  # the April prototype, kept unchanged on purpose
+"eval/baseline/*" = ["B", "E", "F", "W", "I"]  # the whole-document baseline, kept unchanged on purpose

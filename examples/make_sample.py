@@ -2,7 +2,7 @@
 
     python examples/make_sample.py
 
-Writes ten invented "Acme" catalogues to examples/parsed/ in the same Markdown layout the
+Writes eleven invented "Acme" catalogues to examples/parsed/ in the same Markdown layout the
 ingestion step produces from real PDFs (metadata header, `---` between pages, HTML tables),
 plus examples/questions.jsonl. Every product, code and number is made up, and the questions
 are generated from the same data, so their expected answers are right by construction.

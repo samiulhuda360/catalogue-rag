@@ -38,7 +38,8 @@ stops depending on who happens to be in the office.
 
 ## What it does well today
 
-- 98% correct and 100% honest declines on a 46-question test over 54 real catalogues; about 2 s per answer.
+- On 54 public catalogues and 46 questions: 98% of answerable questions correct, 100% of unanswerable questions
+  declined, a median of 2.3 s per answer.
 - Exact part-number handling (keyword search with a code-aware tokenizer) together with meaning-based search.
 - Citations to document, page and section; streaming answers; a passage map that shows what was read.
 - New documents added from the browser in about a minute, without a rebuild, behind an admin token.
@@ -52,7 +53,7 @@ stops depending on who happens to be in the office.
 | **Answers come from a cloud model API** (OpenRouter by default) | Questions and the retrieved passages leave the company | Self-host an open-weight model on your own GPUs with vLLM, TGI or Ollama; set `LLM_BASE_URL`. Supported now |
 | **PDF extraction uses a cloud service** (LlamaParse) | Documents leave the company when they are added | Run an open-source parser such as Docling or Marker on your own GPU; vision-language models for scanned pages |
 | **Small CPU embedding model** (MiniLM, English, 384 dimensions) | Weaker on paraphrases and non-English text | GPU embedding models such as BGE-M3 (multilingual) or Qwen3-Embedding; make the model configurable (roadmap) |
-| **No reranker** | A near-identical neighbouring product can outrank the right one (the one miss in the evaluation) | A cross-encoder reranker (for example bge-reranker-v2-m3) on GPU over the fused results |
+| **No reranker** | A near-identical neighbouring product can outrank the right one | A cross-encoder reranker (for example bge-reranker-v2-m3) on GPU over the fused results |
 | **One admin token, no user accounts** | Cannot yet mix internal and public documents safely | Single sign-on (Microsoft Entra ID, Okta, Google) and per-document access labels enforced at retrieval |
 | **Single server** (embedded ChromaDB, in-memory BM25, one upload worker) | Comfortable to roughly 100,000 passages and a handful of simultaneous users | A server vector database (Qdrant, pgvector) and search engine (OpenSearch), several API replicas, a job queue |
 | **Text only** | Technical drawings, wiring diagrams and photos are not understood | Vision-language models (for example Qwen2.5-VL) to describe figures at indexing time |
@@ -71,7 +72,7 @@ through an API.
 **Target architecture.**
 
 ```mermaid
-flowchart LR
+flowchart TD
   U1["Staff<br/>(intranet, Teams, phone)"] --> GW
   U2["Customers<br/>(website chat)"] --> GW
   GW["Gateway<br/>single sign-on, rate limits"] --> API["Catalogue RAG API<br/>(several replicas)"]

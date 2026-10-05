@@ -25,7 +25,7 @@ Run 2026-10-03T15:23:18 · model `qwen/qwen3-235b-a22b-2507` · 46 questions (40
 | prototype | 7% | 29% | 0% |
 | final | 100% | 96% | 100% |
 
-### Where the final system is wrong
+### Questions not answered correctly
 
 - **q39** (the weight of one safe model) - retrieval surfaced neighbouring safe models; the system declined rather than guess.
 

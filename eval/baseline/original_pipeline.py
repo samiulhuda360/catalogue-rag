@@ -1,10 +1,9 @@
-"""The April prototype, reproduced for comparison.
+"""Whole-document retrieval baseline, used by eval/run_eval.py for comparison.
 
-Retrieval is the original code (original_retrieval.py, unchanged): each catalogue is
-one ChromaDB entry, and the model receives the first 2,000 characters of each of the
-top 5 documents. The system prompt is the original one, word for word. The language
-model is the same as the new system's, so the comparison measures the design, not
-the model.
+Retrieval is original_retrieval.py, kept unchanged: each catalogue is one ChromaDB
+entry, and the model receives the first 2,000 characters of each of the top 5
+documents, with the system prompt below. The language model is the same as the full
+pipeline's, so the comparison measures the design, not the model.
 """
 
 from __future__ import annotations

@@ -6,7 +6,7 @@ All catalogue knowledge used by this project comes from publicly available sourc
 
 The results in [`eval/results/REPORT.md`](../eval/results/REPORT.md) were measured on 54 publicly available door
 hardware catalogues and brochures (locks, closers, access control, padlocks, sliding and window hardware, safes),
-downloaded from manufacturers' public websites in April 2026: 3,062 passages after chunking.
+downloaded from the publishers' public websites.
 
 - The documents belong to their publishers. They are **not included** in this repository, and neither is any
   text extracted from them.
