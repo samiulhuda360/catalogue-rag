@@ -9,6 +9,9 @@ from.**
 
 ![Demo: a question is answered with a citation while the retrieved passages light up on the passage map, then a question the catalogues can't answer is declined](docs/screenshots/demo.gif)
 
+*Watch it work: a question goes in, the answer comes back with a link to the catalogue page it came from, and a
+question the catalogues can't answer gets an honest "not in the catalogues".*
+
 ## What it does
 
 You type a question about locks, handles, door closers or hinges in everyday words, and it answers in a couple of
@@ -16,6 +19,10 @@ seconds using only what the product catalogues say. Every answer shows which cat
 from, so you can check it. If the catalogues don't contain the answer, it says so instead of guessing.
 
 ## A real-life example
+
+![Slideshow: Maria types a customer's question, gets an answer with page links, previews the source page, sees an honest "not in the catalogues" and adds a new catalogue](docs/screenshots/story.gif)
+
+*Maria's day at the trade counter, in five steps.*
 
 Maria works the trade counter at Acme Hardware, a door hardware supplier.
 
@@ -137,6 +144,10 @@ Module-level detail and the reasoning behind each choice: [`docs/architecture.md
 ## How it works
 
 ![How it works: catalogue PDFs are read by an AI document parser, split into page-aware chunks and indexed twice (AI embeddings for meaning, a keyword index for exact part numbers); each question runs a hybrid search over both, rank fusion picks the best passages, and a language model writes an answer citing them, or declines](docs/screenshots/how-it-works.png)
+
+*The whole process on one page: catalogues are read and indexed once; then each question is matched against
+them two ways (by meaning and by exact part number), and the best passages are handed to the AI to write a
+cited answer.*
 
 1. **Parse.** `parse` sends each new PDF in `data/documents/` to LlamaParse, which returns Markdown with the
    specification tables as HTML and a `---` line between pages. Files already parsed are skipped. Markdown and
