@@ -4,17 +4,55 @@
 ![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-**A retrieval-augmented (RAG) assistant for door hardware product catalogues: ask a question in plain language
-and get a grounded answer that cites the catalogue page it came from, or a clear "not in the catalogues".**
-
-It is built for the people who answer door hardware questions all day (sales, trade counters, installers,
-specifiers, customer service) and for any team whose product knowledge lives in PDF catalogues. Hybrid search
-(BM25 keywords plus local embeddings) finds the passages, a language model answers only from those passages, and
-every claim links to its page. On 54 public door hardware catalogues and 46 test questions it answers 98% of the
-answerable questions correctly, declines all of the questions the catalogues cannot answer, and takes a median of
-2.3 seconds per answer ([evaluation](#evaluation)).
+**Ask a question about door hardware products and get an answer that points to the exact catalogue page it came
+from.**
 
 ![Demo: a question is answered with a citation while the retrieved passages light up on the passage map, then a question the catalogues can't answer is declined](docs/screenshots/demo.gif)
+
+## What it does
+
+You type a question about locks, handles, door closers or hinges in everyday words, and it answers in a couple of
+seconds using only what the product catalogues say. Every answer shows which catalogue and which page it came
+from, so you can check it. If the catalogues don't contain the answer, it says so instead of guessing.
+
+## A real-life example
+
+Maria works the trade counter at Acme Hardware, a door hardware supplier.
+
+- **Before:** builders phone and walk in all day asking things like "Which door closer suits a heavy 1100mm
+  door?" or "What's the part number for this handle in satin chrome?". The answers are spread across dozens of
+  PDF catalogues, so Maria scrolls through them while the customer waits, and a part number copied from the
+  wrong table means the wrong item gets ordered and sent back.
+- **With this project:** she types the customer's question as they say it. The answer appears with the part
+  number and a small link to the catalogue page. She clicks the link, sees the page, and reads the answer out
+  with confidence. When a customer asks about a price or a certificate the catalogues don't mention, it tells her
+  "Not in the catalogues", so she knows to check with the manufacturer instead.
+- **After:** in testing on 54 real catalogues, it answered 98% of the questions correctly and got every
+  part-number question right, in a typical 2.3 seconds. It turned down every question the catalogues could not
+  answer rather than making something up.
+
+## How you would use it
+
+1. Open the web page in your browser (someone on your team starts it once; the steps are in
+   [Getting started](#getting-started)).
+2. Type your question in the box, or click one of the example questions.
+3. Read the answer. Each small number in it, such as **[1]**, is a link to the catalogue page that says so.
+4. Hover over a number to preview that page's text, or click it to see the full source.
+5. If you see an amber "Not in the catalogues" card, the answer isn't in your documents.
+6. To add a new catalogue, click **Add catalogues**, enter the team password and drop in the PDF. When it shows
+   "done", you can ask about it straight away.
+
+## In technical terms
+
+Catalogue RAG is a retrieval-augmented generation (RAG) assistant: before it answers, it looks up the right
+passages in the catalogues and gives only those to the language model (the AI that writes the answer). It is
+built for the people who answer door hardware questions all day (sales, trade counters, installers, specifiers,
+customer service) and for any team whose product knowledge lives in PDF catalogues. Hybrid search finds the
+passages by combining BM25 (classic keyword matching, good for exact part numbers) with local embeddings
+(numbers that capture meaning, so differently worded questions still match). The language model answers only
+from those passages, and every claim links to its page. On 54 public door hardware catalogues and 46 test
+questions it answers 98% of the answerable questions correctly, declines all of the questions the catalogues
+cannot answer, and takes a median of 2.3 seconds per answer ([evaluation](#evaluation)).
 
 All catalogue knowledge comes from public sources ([data sources](#data-sources)). The demo and screenshots use
 eleven fictional "Acme" catalogues that ship with the repository.
